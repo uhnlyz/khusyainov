@@ -1,27 +1,32 @@
 
 digraph Patterns {
-  graph [rankdir=LR, bgcolor="white", pad="0.2", nodesep="0.35", ranksep="0.55", splines=ortho, fontname="Arial", label="Ключевые участники выбранных паттернов", labelloc=t, fontsize=18];
-  node [shape=box, style="rounded", color="#222222", fontname="Arial", fontsize=10, margin="0.12,0.08"];
-  edge [color="#333333", arrowsize=0.7, fontname="Arial", fontsize=9];
-  timer [label="TimerService\nКонтекст State / Subject Observer"];
-  state [label="TimerState\nинтерфейс состояния"];
-  idle [label="IdleState"];
-  running [label="RunningState"];
-  paused [label="PausedState"];
-  finished [label="FinishedState"];
-  obs [label="TimerObserver\nинтерфейс подписчика"];
-  main [label="MainWindow"];
-  mini [label="MiniTimerWindow"];
-  strat [label="RecommendationStrategy\nинтерфейс алгоритма"];
-  overtime [label="OvertimeRecommendationStrategy"];
-  frequent [label="FrequentPauseRecommendationStrategy"];
-  factory [label="ReportExporterFactory\nабстрактный создатель"];
-  csvf [label="CsvReportExporterFactory"];
-  pdff [label="PdfReportExporterFactory"];
-  timer -> state [label="хранит текущее состояние"];
-  state -> idle [arrowhead=empty]; state -> running [arrowhead=empty]; state -> paused [arrowhead=empty]; state -> finished [arrowhead=empty];
-  timer -> obs [label="уведомляет"];
-  main -> obs [arrowhead=empty]; mini -> obs [arrowhead=empty];
-  strat -> overtime [arrowhead=empty]; strat -> frequent [arrowhead=empty];
-  factory -> csvf [arrowhead=empty]; factory -> pdff [arrowhead=empty];
+  graph [rankdir=TB, bgcolor="white", pad="0.18", nodesep="0.28", ranksep="0.42", splines=ortho, fontname="Arial", label="Участники пяти выбранных паттернов проектирования", labelloc=t, fontsize=17];
+  node [shape=box, style="rounded", color="#222222", fontname="Arial", fontsize=9, margin="0.10,0.07"];
+  edge [color="#333333", arrowsize=0.65, fontname="Arial", fontsize=8];
+  subgraph cluster_state { label="State — управление состояниями таймера"; color="#777777"; style="rounded";
+    timer [label="TimerService\nКонтекст"]; state [label="TimerState\nИнтерфейс"];
+    idle [label="IdleState"]; running [label="RunningState"]; paused [label="PausedState"]; finished [label="FinishedState"];
+    timer -> state; state -> idle [arrowhead=empty]; state -> running [arrowhead=empty]; state -> paused [arrowhead=empty]; state -> finished [arrowhead=empty];
+  }
+  subgraph cluster_observer { label="Observer — обновление представлений"; color="#777777"; style="rounded";
+    subject [label="TimerService\nИсточник событий"]; observer [label="TimerObserver\nИнтерфейс подписчика"];
+    main [label="MainWindow"]; mini [label="MiniTimerWindow"];
+    subject -> observer [label="уведомляет"]; main -> observer [arrowhead=empty]; mini -> observer [arrowhead=empty];
+  }
+  subgraph cluster_strategy { label="Strategy — алгоритмы рекомендаций"; color="#777777"; style="rounded";
+    service [label="RecommendationService"]; strategy [label="RecommendationStrategy"]; overtime [label="OvertimeRecommendationStrategy"]; frequent [label="FrequentPauseRecommendationStrategy"];
+    service -> strategy; strategy -> overtime [arrowhead=empty]; strategy -> frequent [arrowhead=empty];
+  }
+  subgraph cluster_adapter { label="Adapter — интеграция с рабочим столом"; color="#777777"; style="rounded";
+    client [label="MainWindow\nклиент"]; desktop [label="DesktopIntegration\nцелевой интерфейс"]; awt [label="AwtDesktopIntegrationAdapter"]; noop [label="NoOpDesktopIntegration\nfallback"];
+    client -> desktop; desktop -> awt [arrowhead=empty]; desktop -> noop [arrowhead=empty];
+  }
+  subgraph cluster_factory { label="Factory Method — экспорт отчётов"; color="#777777"; style="rounded";
+    report [label="ReportService"]; factory [label="ReportExporterFactory"]; csvf [label="CsvReportExporterFactory"]; pdff [label="PdfReportExporterFactory"]; exporter [label="ReportExporter"]; csv [label="CsvReportExporter"]; pdf [label="PdfReportExporter"];
+    report -> factory; factory -> csvf [arrowhead=empty]; factory -> pdff [arrowhead=empty]; csvf -> exporter; pdff -> exporter; exporter -> csv [arrowhead=empty]; exporter -> pdf [arrowhead=empty];
+  }
+  timer -> subject [style=invis, weight=100];
+  subject -> service [style=invis, weight=100];
+  service -> client [style=invis, weight=100];
+  client -> report [style=invis, weight=100];
 }
