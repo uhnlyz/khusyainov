@@ -79,13 +79,10 @@ public final class TimerService implements AutoCloseable {
     public synchronized TimerSnapshot snapshot() {
         if (currentTask == null) return TimerSnapshot.idle();
         long elapsed = accumulatedActiveSeconds;
-        if (state instanceof RunningState && activeIntervalStartedAt != null) {
+        if (state.status() == TimerStatus.RUNNING && activeIntervalStartedAt != null) {
             elapsed += Math.max(0, Duration.between(activeIntervalStartedAt, clock.instant()).toSeconds());
         }
-        TimerStatus status = state instanceof RunningState ? TimerStatus.RUNNING
-                : state instanceof PausedState ? TimerStatus.PAUSED
-                : state instanceof FinishedState ? TimerStatus.FINISHED : TimerStatus.IDLE;
-        return new TimerSnapshot(status, currentTask.title(), elapsed, currentTask.plannedSeconds());
+        return new TimerSnapshot(state.status(), currentTask.title(), elapsed, currentTask.plannedSeconds());
     }
 
     synchronized void startInternal(Task task) {
@@ -119,7 +116,7 @@ public final class TimerService implements AutoCloseable {
 
     synchronized void stopInternal() {
         Instant now = clock.instant();
-        if (state instanceof RunningState && activeIntervalStartedAt != null) {
+        if (state.status() == TimerStatus.RUNNING && activeIntervalStartedAt != null) {
             accumulatedActiveSeconds += Math.max(0, Duration.between(activeIntervalStartedAt, now).toSeconds());
         } else if (state instanceof PausedState) {
             closeCurrentPause(now);
