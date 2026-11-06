@@ -17,4 +17,4 @@ mvn clean package
 java -jar target/personal-time-tracker.jar
 ```
 
-Подробные инструкции и ограничения текущей промежуточной версии приведены в `personal-time-tracker/README.md` и отчёте по практической работе № 3.
+Подробные инструкции и ограничения текущей промежуточной версии приведены в `personal-time-tracker/README.md` и отчёте по практической работе № 3. GitHub Actions дополнительно проверяет сборку на Ubuntu, Windows и macOS с JDK 17.
