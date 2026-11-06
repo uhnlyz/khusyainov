@@ -1,0 +1,27 @@
+
+digraph Patterns {
+  graph [rankdir=LR, bgcolor="white", pad="0.2", nodesep="0.35", ranksep="0.55", splines=ortho, fontname="Arial", label="Ключевые участники выбранных паттернов", labelloc=t, fontsize=18];
+  node [shape=box, style="rounded", color="#222222", fontname="Arial", fontsize=10, margin="0.12,0.08"];
+  edge [color="#333333", arrowsize=0.7, fontname="Arial", fontsize=9];
+  timer [label="TimerService\nКонтекст State / Subject Observer"];
+  state [label="TimerState\nинтерфейс состояния"];
+  idle [label="IdleState"];
+  running [label="RunningState"];
+  paused [label="PausedState"];
+  finished [label="FinishedState"];
+  obs [label="TimerObserver\nинтерфейс подписчика"];
+  main [label="MainWindow"];
+  mini [label="MiniTimerWindow"];
+  strat [label="RecommendationStrategy\nинтерфейс алгоритма"];
+  overtime [label="OvertimeRecommendationStrategy"];
+  frequent [label="FrequentPauseRecommendationStrategy"];
+  factory [label="ReportExporterFactory\nабстрактный создатель"];
+  csvf [label="CsvReportExporterFactory"];
+  pdff [label="PdfReportExporterFactory"];
+  timer -> state [label="хранит текущее состояние"];
+  state -> idle [arrowhead=empty]; state -> running [arrowhead=empty]; state -> paused [arrowhead=empty]; state -> finished [arrowhead=empty];
+  timer -> obs [label="уведомляет"];
+  main -> obs [arrowhead=empty]; mini -> obs [arrowhead=empty];
+  strat -> overtime [arrowhead=empty]; strat -> frequent [arrowhead=empty];
+  factory -> csvf [arrowhead=empty]; factory -> pdff [arrowhead=empty];
+}

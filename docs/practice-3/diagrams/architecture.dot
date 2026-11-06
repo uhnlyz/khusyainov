@@ -1,0 +1,36 @@
+
+digraph Architecture {
+  graph [rankdir=LR, bgcolor="white", pad="0.25", nodesep="0.35", ranksep="0.7", splines=polyline, fontname="Arial", label="Слоистая архитектура персонального тайм-трекера", labelloc=t, fontsize=18];
+  node [shape=box, style="rounded", color="#222222", fontname="Arial", fontsize=10, margin="0.14,0.10"];
+  edge [color="#333333", arrowsize=0.7, fontname="Arial", fontsize=8];
+  subgraph cluster_presentation { label="Представление"; color="#777777"; style="rounded";
+    main [label="MainWindow\nосновное окно"];
+    mini [label="MiniTimerWindow\nмини-панель"];
+  }
+  subgraph cluster_application { label="Прикладной слой"; color="#777777"; style="rounded";
+    task [label="TaskService"];
+    timer [label="TimerService"];
+    rec [label="RecommendationService"];
+    report [label="ReportService"];
+  }
+  subgraph cluster_domain { label="Доменная модель и контракты"; color="#777777"; style="rounded";
+    model [label="Category · Task\nWorkSession · PauseRecord"];
+    state [label="TimerState\nIdle / Running / Paused / Finished"];
+    observer [label="TimerObserver\nTimerSnapshot"];
+    strategy [label="RecommendationStrategy"];
+    repos [label="CategoryRepository\nTaskRepository\nWorkSessionRepository"];
+    exporter [label="ReportExporterFactory"];
+  }
+  subgraph cluster_infrastructure { label="Инфраструктура"; color="#777777"; style="rounded";
+    sqlite [label="SQLite JDBC\nSqlite*Repository"];
+    adapter [label="DesktopIntegration\nAwt Adapter / NoOp fallback"];
+    pdf [label="OpenPDF / Java NIO\nPDF и CSV"];
+  }
+  main -> task; main -> timer; main -> report; mini -> observer; main -> observer;
+  timer -> state; timer -> observer; timer -> repos; task -> repos;
+  rec -> strategy; report -> exporter; repos -> sqlite; main -> adapter; exporter -> pdf;
+  {rank=same; main; mini;}
+  {rank=same; task; timer; rec; report;}
+  {rank=same; model; state; observer; strategy; repos; exporter;}
+  {rank=same; sqlite; adapter; pdf;}
+}
