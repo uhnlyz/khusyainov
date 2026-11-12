@@ -40,7 +40,7 @@ java -jar target/personal-time-tracker.jar
 java -jar target/personal-time-tracker.jar --self-check
 ```
 
-GitHub Actions выполняет сборку и самопроверку на Ubuntu, Windows и macOS. Это подтверждает переносимость сборки и базовых интеграций; графический интерфейс и системный трей дополнительно проверяются в соответствующей настольной среде.
+Последний запуск GitHub Actions на коммите `fda8319` завершился успешно на Ubuntu, Windows и macOS: во всех трёх заданиях прошли `mvn clean package` и `java -jar target/personal-time-tracker.jar --self-check`. [Открыть результат проверки](https://github.com/uhnlyz/khusyainov/actions/runs/43330929355). Это подтверждает переносимость сборки и базовых интеграций; графический интерфейс и системный трей дополнительно проверяются в соответствующей настольной среде.
 
 ## Границы текущей версии
 

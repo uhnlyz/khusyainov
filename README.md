@@ -8,7 +8,7 @@
 - `docs/practice-2/` — принятая спецификация требований (SRS) ПР2 и её текстовая копия.
 - `docs/practice-3/` — единый итоговый PDF ПР2+ПР3, редактируемая глава ПР3 и исходники диаграмм draw.io.
 - `personal-time-tracker/` — Maven-проект на Java 17 с логическим разделением по пакетам, SQLite JDBC, Swing/AWT, паттернами проектирования и исполняемым JAR.
-- `.github/workflows/maven-build.yml` — автоматическая сборка и самопроверка на Ubuntu, Windows и macOS.
+- `.github/workflows/maven-build.yml` — автоматическая сборка и самопроверка на Ubuntu, Windows и macOS; последний запуск прошёл успешно: https://github.com/uhnlyz/khusyainov/actions/runs/43330929355.
 
 ## Итоговый документ ПР2 + ПР3
 
