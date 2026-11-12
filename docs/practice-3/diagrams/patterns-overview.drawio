@@ -1,0 +1,128 @@
+<?xml version='1.0' encoding='utf-8'?>
+<mxfile host="app.diagrams.net" modified="2026-11-13T00:00:00.000Z" agent="ChatGPT" version="24.7.17" type="device">
+  <diagram id="patterns-overview" name="Пять паттернов — обзор">
+    <mxGraphModel dx="1200" dy="900" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="title" value="Участники пяти выбранных паттернов проектирования" style="text;html=1;align=center;verticalAlign=middle;fontSize=20;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="280" y="20" width="600" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="row0" value="STATE — управление состояниями таймера" style="rounded=1;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingTop=8;spacingLeft=12;fontSize=14;fontStyle=1;fillColor=#f7f9fa;strokeColor=#b0bec5;" vertex="1" parent="1">
+          <mxGeometry x="35" y="90" width="1095" height="115" as="geometry" />
+        </mxCell>
+        <mxCell id="row1" value="OBSERVER — обновление представлений" style="rounded=1;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingTop=8;spacingLeft=12;fontSize=14;fontStyle=1;fillColor=#f7f9fa;strokeColor=#b0bec5;" vertex="1" parent="1">
+          <mxGeometry x="35" y="230" width="1095" height="115" as="geometry" />
+        </mxCell>
+        <mxCell id="row2" value="STRATEGY — алгоритмы рекомендаций" style="rounded=1;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingTop=8;spacingLeft=12;fontSize=14;fontStyle=1;fillColor=#f7f9fa;strokeColor=#b0bec5;" vertex="1" parent="1">
+          <mxGeometry x="35" y="370" width="1095" height="115" as="geometry" />
+        </mxCell>
+        <mxCell id="row3" value="ADAPTER — интеграция с рабочим столом" style="rounded=1;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingTop=8;spacingLeft=12;fontSize=14;fontStyle=1;fillColor=#f7f9fa;strokeColor=#b0bec5;" vertex="1" parent="1">
+          <mxGeometry x="35" y="510" width="1095" height="115" as="geometry" />
+        </mxCell>
+        <mxCell id="row4" value="FACTORY METHOD — создание экспортёров" style="rounded=1;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingTop=8;spacingLeft=12;fontSize=14;fontStyle=1;fillColor=#f7f9fa;strokeColor=#b0bec5;" vertex="1" parent="1">
+          <mxGeometry x="35" y="650" width="1095" height="115" as="geometry" />
+        </mxCell>
+        <mxCell id="s_ctx" value="TimerService&#10;контекст" style="rounded=1;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fontSize=13;" vertex="1" parent="1">
+          <mxGeometry x="70" y="145" width="170" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="s_int" value="TimerState&#10;интерфейс" style="rounded=1;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fontSize=13;" vertex="1" parent="1">
+          <mxGeometry x="330" y="145" width="170" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="s_impl" value="IdleState · RunningState · PausedState · FinishedState" style="rounded=1;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fontSize=13;" vertex="1" parent="1">
+          <mxGeometry x="620" y="145" width="470" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="o_src" value="TimerService&#10;источник событий" style="rounded=1;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fontSize=13;" vertex="1" parent="1">
+          <mxGeometry x="70" y="285" width="170" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="o_int" value="TimerObserver&#10;интерфейс" style="rounded=1;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fontSize=13;" vertex="1" parent="1">
+          <mxGeometry x="330" y="285" width="170" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="o_main" value="MainWindow&#10;подписчик" style="rounded=1;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fontSize=13;" vertex="1" parent="1">
+          <mxGeometry x="620" y="285" width="190" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="o_mini" value="MiniTimerWindow&#10;подписчик" style="rounded=1;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fontSize=13;" vertex="1" parent="1">
+          <mxGeometry x="860" y="285" width="190" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="st_ctx" value="RecommendationService&#10;контекст" style="rounded=1;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fontSize=13;" vertex="1" parent="1">
+          <mxGeometry x="70" y="425" width="170" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="st_int" value="RecommendationStrategy&#10;интерфейс" style="rounded=1;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fontSize=13;" vertex="1" parent="1">
+          <mxGeometry x="330" y="425" width="170" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="st_a" value="OvertimeRecommendationStrategy" style="rounded=1;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fontSize=13;" vertex="1" parent="1">
+          <mxGeometry x="620" y="425" width="190" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="st_b" value="FrequentPauseRecommendationStrategy" style="rounded=1;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fontSize=13;" vertex="1" parent="1">
+          <mxGeometry x="860" y="425" width="220" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="a_cli" value="MainWindow&#10;клиент" style="rounded=1;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fontSize=13;" vertex="1" parent="1">
+          <mxGeometry x="70" y="565" width="170" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="a_int" value="DesktopIntegration&#10;целевой интерфейс" style="rounded=1;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fontSize=13;" vertex="1" parent="1">
+          <mxGeometry x="330" y="565" width="170" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="a_awt" value="AwtDesktopIntegrationAdapter" style="rounded=1;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fontSize=13;" vertex="1" parent="1">
+          <mxGeometry x="620" y="565" width="190" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="a_noop" value="NoOpDesktopIntegration&#10;резервный вариант" style="rounded=1;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fontSize=13;" vertex="1" parent="1">
+          <mxGeometry x="860" y="565" width="220" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="f_cli" value="ReportService&#10;клиент" style="rounded=1;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fontSize=13;" vertex="1" parent="1">
+          <mxGeometry x="70" y="705" width="170" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="f_cre" value="ReportExporterFactory&#10;Creator" style="rounded=1;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fontSize=13;" vertex="1" parent="1">
+          <mxGeometry x="300" y="705" width="180" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="f_fact" value="Csv / Pdf&#10;конкретные фабрики" style="rounded=1;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fontSize=13;" vertex="1" parent="1">
+          <mxGeometry x="560" y="705" width="190" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="f_prod" value="Csv / Pdf&#10;экспортёры" style="rounded=1;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fontSize=13;" vertex="1" parent="1">
+          <mxGeometry x="850" y="705" width="200" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="edge1" value="делегирует" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeWidth=1.1;fontSize=10;" edge="1" parent="1" source="s_ctx" target="s_int">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge2" value="реализации" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeWidth=1.1;fontSize=10;" edge="1" parent="1" source="s_int" target="s_impl">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge3" value="уведомляет" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeWidth=1.1;fontSize=10;" edge="1" parent="1" source="o_src" target="o_int">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge4" value="подписчик" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;dashed=1;endArrow=block;endFill=0;strokeWidth=1.1;fontSize=10;" edge="1" parent="1" source="o_main" target="o_int">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge5" value="подписчик" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;dashed=1;endArrow=block;endFill=0;strokeWidth=1.1;fontSize=10;" edge="1" parent="1" source="o_mini" target="o_int">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge6" value="вызывает" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeWidth=1.1;fontSize=10;" edge="1" parent="1" source="st_ctx" target="st_int">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge7" value="реализует" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;dashed=1;endArrow=block;endFill=0;strokeWidth=1.1;fontSize=10;" edge="1" parent="1" source="st_a" target="st_int">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge8" value="реализует" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;dashed=1;endArrow=block;endFill=0;strokeWidth=1.1;fontSize=10;" edge="1" parent="1" source="st_b" target="st_int">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge9" value="использует" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeWidth=1.1;fontSize=10;" edge="1" parent="1" source="a_cli" target="a_int">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge10" value="реализует" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;dashed=1;endArrow=block;endFill=0;strokeWidth=1.1;fontSize=10;" edge="1" parent="1" source="a_awt" target="a_int">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge11" value="fallback" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;dashed=1;endArrow=block;endFill=0;strokeWidth=1.1;fontSize=10;" edge="1" parent="1" source="a_noop" target="a_int">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge12" value="выбирает" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeWidth=1.1;fontSize=10;" edge="1" parent="1" source="f_cli" target="f_cre">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge13" value="переопределяют" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeWidth=1.1;fontSize=10;" edge="1" parent="1" source="f_cre" target="f_fact">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge14" value="создают" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeWidth=1.1;fontSize=10;" edge="1" parent="1" source="f_fact" target="f_prod">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
