@@ -11,7 +11,7 @@ permissions:
 
 jobs:
   build:
-    name: Build on ${{ matrix.os }}
+    name: Сборка и самопроверка на ${{ matrix.os }}
     runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
@@ -31,3 +31,7 @@ jobs:
       - name: Собрать проект и выполнить тесты
         working-directory: personal-time-tracker
         run: mvn --batch-mode --no-transfer-progress clean package
+
+      - name: Проверить запуск исполняемого JAR и основные интеграции
+        working-directory: personal-time-tracker
+        run: java -jar target/personal-time-tracker.jar --self-check

@@ -8,15 +8,18 @@ import com.lowagie.text.pdf.BaseFont;
 import com.lowagie.text.pdf.PdfWriter;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.OutputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
+/** Экспортирует снимок отчёта в PDF с встроенным шрифтом, поддерживающим кириллицу. */
 final class PdfReportExporter implements ReportExporter {
     @Override
     public void export(ReportSnapshot report, Path destination) throws IOException {
         Path parent = destination.toAbsolutePath().getParent();
         if (parent != null) Files.createDirectories(parent);
+
         try (OutputStream output = Files.newOutputStream(destination)) {
             Document document = new Document();
             PdfWriter.getInstance(document, output);
@@ -35,19 +38,17 @@ final class PdfReportExporter implements ReportExporter {
     }
 
     private Font createCyrillicFont() throws IOException, DocumentException {
-        String[] candidates = {
-                "C:/Windows/Fonts/arial.ttf",
-                "/System/Library/Fonts/Supplemental/Arial.ttf",
-                "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf",
-                "/usr/share/fonts/truetype/liberation2/LiberationSans-Regular.ttf"
-        };
-        for (String candidate : candidates) {
-            if (Files.isRegularFile(Path.of(candidate))) {
-                BaseFont baseFont = BaseFont.createFont(candidate, BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
-                return new Font(baseFont, 11);
+        // Шрифт поставляется вместе с приложением: экспорт не зависит от набора
+        // системных шрифтов Windows, Linux или macOS.
+        try (InputStream input = getClass().getResourceAsStream("/fonts/DejaVuSans.ttf")) {
+            if (input == null) {
+                throw new IOException("В JAR отсутствует встроенный шрифт DejaVuSans.ttf");
             }
+            byte[] fontBytes = input.readAllBytes();
+            BaseFont baseFont = BaseFont.createFont(
+                    "DejaVuSans.ttf", BaseFont.IDENTITY_H, BaseFont.EMBEDDED,
+                    true, fontBytes, null);
+            return new Font(baseFont, 11);
         }
-        BaseFont fallback = BaseFont.createFont(BaseFont.HELVETICA, BaseFont.WINANSI, BaseFont.NOT_EMBEDDED);
-        return new Font(fallback, 11);
     }
 }
